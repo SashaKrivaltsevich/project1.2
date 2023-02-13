@@ -5,12 +5,14 @@
 (без учёта регистра).
 То есть буквы n и N считать одинаковыми.
 """
-letter = input('Введите букву: ')
-count = 0
+def letter_count(letter: str):
+    counter = 0
+    with open('text.txt', 'r') as file_txt:
+        for line in file_txt:
+            for i in range(len(line)):
+                if letter.lower() == line[i] or letter.upper() == line[i]:
+                    counter += 1
+            print(f'Буква встречается {counter} раз')
 
-with open('text.txt') as file_txt:
-    reader = file_txt.read()
-    for lett in reader:
-        if lett in [letter, letter.upper()]:
-            count += 1
-    print('Буква втречается', count, 'раза в тексте')
+
+letter_count(input("Введите латинскую букву: "))
