@@ -12,7 +12,7 @@ def find_info():
                                 '4 - Get top 10 companies\n'
                                 '5 - Exit\nYour choice: ')
             if user_choice == "5":
-                print("By")
+                print("Bye")
                 break
             if user_choice == '1':
                 name_of_company = input('Write the company name: ')
@@ -26,9 +26,6 @@ def find_info():
                             "Stock Price": row.get("Price")
                         }
                         )
-                for row in data:
-                    if name_of_company in row['Name']:
-                        companies.append(row)
                 return companies
 
             elif user_choice == '2':
@@ -40,19 +37,14 @@ def find_info():
                 return list_of_companies
 
             elif user_choice == '3':
-                price = []
-                for row in data:
-                    price.append(float(row['Price']))
-                av_pr = (reduce(lambda x, y: x + y, price) / len(price))
+                price = [float(row['Price']) for row in data]
+                av_pr = sum(price) / len(price)
                 return round(av_pr, 4)
 
-            else :
+            elif user_choice == '4':
                 companies = []
                 price = []
-                for row in data:
-                    companies.append(row['Name'])
-                    price.append(row['Price'])
-                fin_pr = list(zip(companies, price))
+                fin_pr = [(row['Name'], row['Price']) for row in data]
                 fin = sorted(fin_pr, key=lambda x: (x[1]), reverse=True)
                 return fin[1:11]
 
