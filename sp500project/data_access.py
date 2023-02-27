@@ -18,3 +18,12 @@ def record_exist(company_name):
                 raise RecordAlreadyExists("Company already exists.")
 
 
+def write_to_csv_db(fields, data, mode):
+    with open('sp500.csv', newline='', mode='w') as \
+            write_file:
+        names = fields
+        file_writer = csv.DictWriter(write_file, names)
+        file_writer.writeheader()
+        file_writer.writerows(data)
+
+
