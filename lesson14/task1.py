@@ -57,7 +57,7 @@ class Contact:
         return self._phone
 
     @phone.setter
-    def phone(self, value: str) ->None:
+    def phone(self, value: str) -> None:
         self._validation_phone(value=value)
         self._phone = value
 
