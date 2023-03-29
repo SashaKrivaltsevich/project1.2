@@ -10,16 +10,17 @@
 # то перед присваиванием этого текста атрибуту класса, дескриптор заменяет это слово на ****
 from time import time
 import re
+from typing import Optional, Any
 
 
 class Censored:
-    def __set_name__(self, owner, name):
+    def __set_name__(self, owner, name: str) -> None:
         self.name = "_" + name
 
-    def __get__(self, instance, owner):
+    def __get__(self, instance: Optional[object], owner: Optional[type]) -> Any:
         return getattr(instance, self.name)
 
-    def __set__(self, instance, value):
+    def __set__(self, instance: Optional[object], value: str) -> None:
         censored_value = re.sub(r"\b[fF][uU][cC][kK]\b", '****', value)
         setattr(instance, self.name, censored_value)
 
@@ -28,7 +29,7 @@ class Song:
     name = Censored()
     author = Censored()
 
-    def __init__(self, name, author):
+    def __init__(self, name: str, author: str) -> None:
         self.name = name
         self.author = author
         self.created_at = time()
@@ -37,7 +38,7 @@ class Song:
 class Message:
     text = Censored()
 
-    def __init__(self, text):
+    def __init__(self, text: str) -> None:
         self.text = text
         self.created_at = time()
 
