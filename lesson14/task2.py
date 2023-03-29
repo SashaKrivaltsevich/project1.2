@@ -38,7 +38,7 @@ class Song:
 class Message:
     text = Censored()
 
-    def __init__(self, text: str) -> None:
+    def __init__(self, text: str)  -> None:
         self.text = text
         self.created_at = time()
 

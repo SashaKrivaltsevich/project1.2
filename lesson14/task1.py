@@ -48,7 +48,7 @@ class Contact:
         return self._email
 
     @email.setter
-    def email(self, value: str) -> None:
+    def email(self, value: str)  -> None:
         self._valid_email(value=value)
         self._email = value
 
