@@ -3,15 +3,12 @@
 
 
 class Alphabet:
-    def __init__(self, end, lower):
+    def __init__(self, end: str, lower = True):
         self.end = end
         self.first = 97
         self.lower = lower
 
     def __next__(self):
-        if self.lower is False:
-            self.first = 65
-            self.end = self.end.upper()
 
         if self.value == ord(self.end):
             raise StopIteration
@@ -21,6 +18,9 @@ class Alphabet:
         return chr(self.value)
 
     def __iter__(self):
+        if self.lower is False:
+            self.first = 65
+            self.end = self.end.upper()
         self.value = self.first - 1
         return self
 

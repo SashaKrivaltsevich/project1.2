@@ -2,7 +2,7 @@ class Stack:
     def __init__(self):
         self.stack = []
 
-    def push(self, element):
+    def push(self, element) -> None:
         self.stack.append(element)
 
     def pop(self):
@@ -11,7 +11,7 @@ class Stack:
         else:
             return None
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return len(self.stack) == 0
 
     def peek(self):
@@ -21,7 +21,7 @@ class Stack:
             return None
 
 
-def correct_bracket(string):
+def correct_bracket(string: str) -> bool:
     stack = Stack()
     for bracket in string:
         if bracket in "([{":

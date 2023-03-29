@@ -1,12 +1,13 @@
 from functools import total_ordering
 
+
 class IncorrectDataError(Exception):
     ...
 
 
 @total_ordering
 class Element:
-    def __init__(self, data):
+    def __init__(self, data: int) -> None:
         self._data = data
         self.next = None
 
@@ -18,15 +19,15 @@ class Element:
             raise IncorrectDataError('The element must be'
                                      ' in range 0 - 10000')
 
-    def __gt__(self, other):
+    def __gt__(self, other) -> bool:
         return self.data > other.data
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return self.data == other.data
 
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self) -> None:
         self.head = None
 
     def append(self, element):
@@ -39,7 +40,7 @@ class LinkedList:
                 last_element = last_element.next
             last_element.next = current_element
 
-    def reverse(self):
+    def reverse(self) -> None:
         previous_element = None
         current_element = self.head
         while current_element:
@@ -49,7 +50,7 @@ class LinkedList:
             current_element = next_element
         self.head = previous_element
 
-    def println(self):
+    def println(self) -> list[int]:
         result = []
         if not self.head:
             return result
@@ -59,7 +60,7 @@ class LinkedList:
             current_element = current_element.next
         return result
 
-    def length(self):
+    def length(self) -> int:
         current_element = self.head
         count = 1
         if not self.head:
