@@ -3,7 +3,7 @@
 
 
 class Alphabet:
-    def __init__(self, end, lower):
+    def __init__(self, end: str, lower = True):
         self.end = end
         self.first = 97
         self.lower = lower
