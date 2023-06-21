@@ -2,14 +2,14 @@ from error import EmptyLibraryError
 
 
 class Book:
-    def __init__(self, name, description, pages, author, price):
+    def __init__(self, name, description, pages, author, price) -> None:
         self.name = name
         self.description = description
         self.pages = pages
         self.author = author
         self.price = price
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {
             'name': self.name,
             'description': self.description,
@@ -17,36 +17,36 @@ class Book:
             'price': self.price
         }
 
-    def contains_word(self, word):
+    def contains_word(self, word: str) -> bool | None:
         if word in self.name.lower() or word in self.description.lower():
             return True
         else:
             return False
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return self.to_dict() == other.to_dict()
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         return self.to_dict() < other.to_dict
 
-    def __le__(self, other):
+    def __le__(self, other) -> bool:
         return self.to_dict() <= other.to_dict()
 
 
 class Library:
-    def __init__(self):
+    def __init__(self) -> None:
         self.book = []
 
-    def add_book(self, book):
+    def add_book(self, book: Book) -> None:
         self.book.append(book)
 
-    def get_books(self):
+    def get_books(self) -> list:
         return [book.to_dict() for book in self.book]
 
-    def remove_book(self, book):
+    def remove_book(self, book) ->None:
         self.book.remove(book)
 
-    def find_the_biggest_book(self):
+    def find_the_biggest_book(self) -> Book | None:
         try:
             if self.book:
                 return max(self.book, key=lambda book: book.pages).to_dict()
